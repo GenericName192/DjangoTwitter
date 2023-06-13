@@ -1,0 +1,44 @@
+{% extends "base.html" %} {% block content %} {% load static %}
+<h1>Profile List</h1>
+<br />
+{% if profiles %} {% for profile in profiles %}
+<!-- comment to stop prettier -->
+<div class="card mb-3" style="max-width: 540px">
+  <div class="row g-0">
+    <div class="col-md-4">
+      {% if profile.profileImage %}
+      <img
+        src="{{ profile.profileImage.url }}"
+        class="img-fluid rounded-start"
+        alt="Profile image"
+      />
+      {% else %}
+      <img
+        src="{% static 'images/user_318-804790.avif' %}"
+        class="img-fluid rounded-start"
+        alt="Profile image"
+      />{% endif %}
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{profile.user.username}}</h5>
+        <p class="card-text">
+          <a href="{% url 'profile' profile.user.id  %}">
+            @{{profile.user.username|lower}}</a
+          >
+          <br /><br />
+        </p>
+        <p class="card-text">
+          <small class="text-body-secondary"
+            >Last updated: {{ profile.dateModified }}</small
+          >
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+<br />
+{% endif %}
+<br />
+{% endblock %}

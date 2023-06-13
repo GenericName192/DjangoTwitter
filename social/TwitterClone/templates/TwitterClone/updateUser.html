@@ -1,0 +1,15 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="col-md-6 offset-md-3">
+  <h1>Update User</h1>
+  <br />
+  <form method="POST" action="" enctype="multipart/form-data">
+    <!-- allow images -->
+    {% csrf_token %} {{userForm.as_p}}
+    <br />
+    {{profileForm.as_p}}
+    <button type="submit" class="btn btn-success">Update</button>
+  </form>
+</div>
+{% endblock %}
+<!--  -->
